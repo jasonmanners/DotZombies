@@ -15,6 +15,7 @@
 				var z1 = new DOT.Zombie({pos:{x:0,y:0},velocity:100}); 
 				var z2 = new DOT.Zombie({pos:{x:0,y:50},velocity:150}); 
 				var zC = new DOT.ZombieCollection([z1,z2]);
+console.log(zC);
 				var cotx = $('#world')[0].getContext('2d'); 
 				var zw1 = new DOT.ZombieView({ctx : cotx, collection : zC});
 				//var zw2 = new DOT.ZombieView({ctx : cotx, model : z2});
@@ -23,7 +24,7 @@
 					//zw1.model.update(30);
 					//zw2.model.update(30);
 					//zw1.collection.each(function(z){z.update(30);});
-					zw1.update(30);
+					zC.update(30);
 					requestAnimationFrame(abc);
 				}
 				

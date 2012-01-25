@@ -1,7 +1,9 @@
 DOT.ZombieCollection = Backbone.Collection.extend({
 	model : DOT.Zombie,
-
+	initialize : function() {
+		console.log(this.models);
+	},
 	update : function(delta_time) {
-		this.collection.each(function(zombie){zombie.update(delta_time)});
+		_(this.models).each(function(zombie){zombie.update(delta_time)});
 	}
 });
