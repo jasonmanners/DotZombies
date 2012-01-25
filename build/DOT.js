@@ -164,16 +164,28 @@ DOT.Zombie = DOT.DotObject.extend({
 });DOT.ZombieView = Backbone.View.extend({
 
 	initialize : function() {
-    console.log(this.ctx);
-    this.model.bind('change:pos', this.render.bind(this));
+		var that = this;
+    this.collection.each(function(zombie){
+    	console.log(zombie);
+	zombie.bind('change:pos', function(){that.__renderSingleZombie(that.options.ctx,zombie)}.bind(this));
+    });
+    //this.model.bind('change:pos', this.render.bind(this));
+	},
+
+	__renderSingleZombie : function(ctx,zombie) {
+		var pos = zombie.get('pos');
+		var prev = zombie.get('prev');
+		ctx.save();
+			ctx.clearRect(prev.x-1,prev.y-1,32,32);
+			ctx.fillStyle = "#333333";
+			ctx.fillRect(pos.x,pos.y,30,30);
+		ctx.restore();
 	},
 
 	render : function() {
-		var pos = this.model.get('pos');
-		var prev = this.model.get('prev');
 		var ctx = this.options.ctx;
-		ctx.clearRect(prev.x-1,prev.y-1,32,32);
-		ctx.fillStyle = "#000000";
-		ctx.fillRect(pos.x,pos.y,30,30);
+		this.collection.each(function(zombie){
+			that.__renderSingleZombie(ctz,zombie);
+		});
 	}
 });

@@ -3,7 +3,8 @@ DOT.ZombieView = Backbone.View.extend({
 	initialize : function() {
 		var that = this;
     this.collection.each(function(zombie){
-    	zombie.bind.('change:pos', function(){that.__renderSingleZombie(that.options.ctx,zombie)}.bind(this));
+    	console.log(zombie);
+	zombie.bind('change:pos', function(){that.__renderSingleZombie(that.options.ctx,zombie)}.bind(this));
     });
     //this.model.bind('change:pos', this.render.bind(this));
 	},
@@ -16,7 +17,7 @@ DOT.ZombieView = Backbone.View.extend({
 			ctx.fillStyle = "#333333";
 			ctx.fillRect(pos.x,pos.y,30,30);
 		ctx.restore();
-	}
+	},
 
 	render : function() {
 		var ctx = this.options.ctx;
