@@ -1,0 +1,35 @@
+<html>
+	<head>
+		<style>
+			#game_container {
+				width: 960px;
+				margin: 0 auto;
+				border: 1px solid #112233;
+			}
+		</style>
+		<script type="text/javascript" src="build/DOT.js"></script>
+		<script>
+			
+
+			$(function(){
+				var z = new DOT.Zombie({pos:{x:0,y:0},velocity:100}); 
+				var cotx = $('#world')[0].getContext('2d'); 
+				var zw = new DOT.ZombieView({ctx : cotx, model : z});
+				console.log(z.update);
+				function abc() {
+					//console.log(zw.model.get('pos'));
+					zw.model.update(30);
+					requestAnimationFrame(abc);
+				}
+				
+				abc();
+
+			});
+		</script>
+	</head>
+	<body>
+		<section id="game_container">
+			<canvas id="world"></canvas>
+		</section>
+	</body>
+</html>
