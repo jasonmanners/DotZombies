@@ -3,7 +3,6 @@ DOT.ZombieView = Backbone.View.extend({
 	initialize : function() {
 		var that = this;
     this.collection.each(function(zombie){
-    	console.log(zombie);
 	zombie.bind('change:pos', function(){that.__renderSingleZombie(that.options.ctx,zombie)}.bind(this));
     });
     //this.model.bind('change:pos', this.render.bind(this));
